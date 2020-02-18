@@ -34,6 +34,10 @@ public class Projectile
         time += delta;
     }
 
+    public double getTime()
+    {
+        return time;
+    }
     @Override
     public String toString()
     {
