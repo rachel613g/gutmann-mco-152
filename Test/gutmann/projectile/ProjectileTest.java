@@ -33,7 +33,7 @@ public class ProjectileTest
         //then
         assertEquals(83.5569, y, 0.0001);
     }
-    
+
     @Test
     public void increaseTime()
     {

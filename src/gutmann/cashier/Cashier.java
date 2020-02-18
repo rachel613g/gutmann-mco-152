@@ -8,6 +8,7 @@ public class Cashier
     public Cashier(Cash cashInRegister)
     {
         this.cashInRegister = cashInRegister;
+        this.change = new Cash();
     }
 
     public Cash pay(double price, Cash cashIN)
@@ -32,7 +33,7 @@ public class Cashier
         double changeInDouble = cashIN.getTotal() - price;
 
         //determine optimal change to return
-        while (changeInDouble > 0.001) //while the changeInDouble is larger than a penny
+        while (changeInDouble > 0.0001) //while the changeInDouble is larger than a penny
         {
             if (changeInDouble >= 20)
             {
