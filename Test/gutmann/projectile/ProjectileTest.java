@@ -21,6 +21,20 @@ public class ProjectileTest
     }
 
     @Test
+    public void getY()
+    {
+        //given
+        Projectile projectile = new Projectile(53.26, 82);
+        projectile.increaseTime(5);
+        //when
+        //the specific part of the method you are testing
+        double y = projectile.getY();
+
+        //then
+        assertEquals(83.5569, y, 0.0001);
+    }
+    
+    @Test
     public void increaseTime()
     {
         //given
