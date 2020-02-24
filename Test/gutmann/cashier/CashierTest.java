@@ -17,13 +17,14 @@ public class CashierTest
         //when
         Cash change = cashier.pay(2.49, customerCash);
 
+
         //then
         Cash customerAssert = new Cash(1, 0, 0, 2, 0,
                 0, 0, 0);
         Cash registerAssert = new Cash(99, 0, 0, 98, 3,
                 0,0,0);
         assertEquals(customerAssert, change);
-        assertEquals(registerAssert, register);
+        assertEquals(registerAssert, cashier.getCashInRegister());
     }
 
 }

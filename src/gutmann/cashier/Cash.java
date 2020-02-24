@@ -38,12 +38,60 @@ public class Cash
         double nickels = this.nickels * 0.05;
         double dimes = this.dimes * 0.10;
         double quarters = this.quarters * 0.25;
-        double oneDollars = this.oneDollars * 1;
+        double oneDollars = this.oneDollars;
         double fiveDollars = this.fiveDollars * 5;
         double tenDollars = this.tenDollars * 10;
         double twentyDollars = this.twentyDollars * 20;
 
         total = pennies + nickels + dimes + quarters + oneDollars + fiveDollars + tenDollars + twentyDollars;
+    }
+
+    public void subtractPennies(int delta)
+    {
+        pennies -= delta;
+        setTotal();
+    }
+
+    public void subtractNickels(int delta)
+    {
+        nickels =- delta;
+        setTotal();
+    }
+
+    public void subtractDimes(int delta)
+    {
+        dimes =- delta;
+        setTotal();
+    }
+
+    public void subtractQuarters(int delta)
+    {
+        quarters -= delta;
+        setTotal();
+    }
+
+    public void subtractOneDollars(int delta)
+    {
+        oneDollars =- delta;
+        setTotal();
+    }
+
+    public void subtractFiveDollars(int delta)
+    {
+        fiveDollars =- delta;
+        setTotal();
+    }
+
+    public void subtractTenDollars(int delta)
+    {
+        tenDollars =- delta;
+        setTotal();
+    }
+
+    public void subtractTwentyDollars(int delta)
+    {
+        twentyDollars =- delta;
+        setTotal();
     }
 
     public void addPennies(int delta)
@@ -153,4 +201,22 @@ public class Cash
                 ", twentyDollars=" + twentyDollars +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cash cash = (Cash) o;
+        return pennies == cash.pennies &&
+                nickels == cash.nickels &&
+                dimes == cash.dimes &&
+                quarters == cash.quarters &&
+                oneDollars == cash.oneDollars &&
+                fiveDollars == cash.fiveDollars &&
+                tenDollars == cash.tenDollars &&
+                twentyDollars == cash.twentyDollars;
+    }
+
+
 }
