@@ -61,13 +61,18 @@ public class Cashier
         //determine change as a double using df
         double changeInDouble = Double.parseDouble(df.format(cashIN.getTotal() - price));
 
-        //determine optimal change to return
+       //determine optimal change to return
         while (changeInDouble > 0.00) //while the changeInDouble is larger than a penny
         {
             if (changeInDouble >= 20)
             {
                 //calculate amount of twenty dollars
                 int deltaTwentyDollars = (int) changeInDouble / 20;
+                //check if cashier has correct change
+                if (cashInRegister.getTwentyDollars() < deltaTwentyDollars)
+                {
+                    throwException();
+                }
                 //add amount to change object
                 change.addTwentyDollars(deltaTwentyDollars);
                 // subtract amount from change cashInRegister object
@@ -79,6 +84,10 @@ public class Cashier
             {
                 int deltaTenDollars = (int) changeInDouble / 10;
                 change.addTenDollars(deltaTenDollars);
+                if (cashInRegister.getTenDollars() < deltaTenDollars)
+                {
+                    throwException();
+                }
                 cashInRegister.subtractTenDollars(deltaTenDollars);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (10 * deltaTenDollars)));
             }
@@ -86,6 +95,10 @@ public class Cashier
             {
                 int deltaFiveDollars = (int) changeInDouble / 5;
                 change.addFiveDollars(deltaFiveDollars);
+                if (cashInRegister.getFiveDollars() < deltaFiveDollars)
+                {
+                    throwException();
+                }
                 cashInRegister.subtractFiveDollars(deltaFiveDollars);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (5 * deltaFiveDollars)));
             }
@@ -93,6 +106,10 @@ public class Cashier
             {
                 int deltaOneDollars = (int) changeInDouble;
                 change.addOneDollars(deltaOneDollars);
+                if (cashInRegister.getOneDollars() < deltaOneDollars)
+                {
+                    throwException();
+                }
                 cashInRegister.subtractOneDollars(deltaOneDollars);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - deltaOneDollars));
             }
@@ -100,6 +117,10 @@ public class Cashier
             {
                 int deltaQuarters = (int) (changeInDouble / 0.25);
                 change.addQuarters(deltaQuarters);
+                if (cashInRegister.getQuarters() < deltaQuarters)
+                {
+                    throwException();
+                }
                 cashInRegister.subtractQuarters(deltaQuarters);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (0.25 * deltaQuarters)));
             }
@@ -107,6 +128,10 @@ public class Cashier
             {
                 int deltaDimes = (int) (changeInDouble / 0.1);
                 change.addDimes(deltaDimes);
+                if (cashInRegister.getDimes() < deltaDimes)
+                {
+                    throwException();
+                }
                 cashInRegister.subtractDimes(deltaDimes);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (0.1 * deltaDimes)));
             }
@@ -114,6 +139,10 @@ public class Cashier
             {
                 int deltaNickels = (int) (changeInDouble / 0.05);
                 change.addNickels(deltaNickels);
+                if (cashInRegister.getNickels() < deltaNickels)
+                {
+                    throwException();
+                }
                 cashInRegister.subtractDimes(deltaNickels);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (0.05 * deltaNickels)));
             }
@@ -121,6 +150,10 @@ public class Cashier
             {
                 int deltaPennies = (int) (changeInDouble / 0.01);
                 change.addPennies(deltaPennies);
+                if (cashInRegister.getPennies() < deltaPennies)
+                {
+                    throwException();
+                }
                 cashInRegister.subtractPennies(deltaPennies);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (deltaPennies * 0.01)));
             }
