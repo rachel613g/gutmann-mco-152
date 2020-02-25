@@ -11,7 +11,7 @@ public class Scrabble
         String input = "AW";
         boolean isAWord = false;
 
-        String filePath = "C:\\Users\\rache\\OneDrive\\Desktop\\dictionary.txt";
+        String filePath = "dictionary.txt";
         try (Scanner wordsIn = new Scanner(new FileReader(filePath)))
         {
             wordsIn.useDelimiter("[^a-zA-Z']+");
