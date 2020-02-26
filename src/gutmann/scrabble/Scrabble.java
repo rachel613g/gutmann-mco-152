@@ -1,32 +1,36 @@
 package gutmann.scrabble;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Scrabble
 {
-    public boolean checkWord()
+    public boolean checkWord(String word)
     {
-        String input = "AW";
         boolean isAWord = false;
 
-        String filePath = "C:\\Users\\rache\\OneDrive\\Desktop\\dictionary.txt";
-        try (Scanner wordsIn = new Scanner(new FileReader(filePath)))
+        HashSet<String> hashSet = new HashSet<String>();
+
+        File file = new File("dictionary.txt");
+        try (Scanner scanner = new Scanner(file))
         {
-            wordsIn.useDelimiter("[^a-zA-Z']+");
-            while (wordsIn.hasNext())      // while more words to process
+            while (scanner.hasNext())
             {
-                String word = wordsIn.next();
-                if (input.compareTo(word) < 0)
-                {
-                    isAWord = true;
-                    break;
-                }
+                String dictionaryIn = scanner.next();
+                hashSet.add(dictionaryIn.toLowerCase());
+                scanner.nextLine();
             }
         } catch (IOException ioex)
         {
             System.out.println(ioex.getMessage());
+        }
+
+        if (hashSet.contains(word.toLowerCase()))
+        {
+            isAWord = true;
         }
         return isAWord;
     }
