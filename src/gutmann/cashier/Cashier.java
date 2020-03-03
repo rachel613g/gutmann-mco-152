@@ -13,6 +13,13 @@ public class Cashier
         this.change = new Cash();
     }
 
+    //copy constructor
+    public Cashier (Cashier copyThis)
+    {
+        this.cashInRegister = copyThis.getCashInRegister();
+        this.change = copyThis.getChange();
+    }
+
     private void throwException() throws IllegalArgumentException
     {
         throw new IllegalArgumentException("Cashier doesn't have correct change.");
@@ -175,5 +182,10 @@ public class Cashier
     public Cash getCashInRegister()
     {
         return cashInRegister;
+    }
+
+    public Cash getChange()
+    {
+        return change;
     }
 }

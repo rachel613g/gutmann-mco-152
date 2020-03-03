@@ -1,9 +1,11 @@
 package gutmann.cashier;
+
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 import static junit.framework.Assert.assertEquals;
+
 public class CashierTest
 {
     @Test
@@ -40,7 +42,7 @@ public class CashierTest
         //when
         Cash change = cashier.pay(2.49, customerCash);
 
-        //then it shld throw exception
+        //then it should throw exception
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -53,8 +55,27 @@ public class CashierTest
                 0, 0, 0));
 
         //when
-        Cash change = cashier.pay(2.49, customerCash);
+        cashier.pay(2.49, customerCash);
 
+        //then it should throw exception
+    }
+
+    @Test
+    public void payException()
+    {
+       //given
+        Cash customerCash = new Cash(0, 0, 0, 0, 3,
+                0, 0, 0);
+        Cashier cashier = new Cashier(new Cash(1, 0, 0, 0, 0,
+                0, 0, 0));
+        Cashier assertCashier = new Cashier(cashier);
+
+        //when
+        cashier.pay(2.49, customerCash);
+        //exception will be thrown
+
+        //then
+        assertEquals(assertCashier.getCashInRegister(), cashier.getCashInRegister());
 
     }
 }
