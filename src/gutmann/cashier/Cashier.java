@@ -78,13 +78,14 @@ public class Cashier
         //determine change as a double using df
         double changeInDouble = Double.parseDouble(df.format(cashIN.getTotal() - price));
 
-        //determine optimal change to return
+       //determine optimal change to return
         while (changeInDouble > 0.00) //while the changeInDouble is larger than a penny
         {
             if (changeInDouble >= 20)
             {
                 //calculate amount of twenty dollars
                 int deltaTwentyDollars = (int) changeInDouble / 20;
+
                 //check if cashier has enough change
                 if (cashInRegister.getTwentyDollars() < deltaTwentyDollars)
                 {
