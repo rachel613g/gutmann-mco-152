@@ -13,6 +13,6 @@ public class ScrabbleTest
     {
     Scrabble scrabble = new Scrabble();
 
-    assertTrue( scrabble.checkWord("yo"));
+    assertTrue( scrabble.isWord("yo"));
     }
 }

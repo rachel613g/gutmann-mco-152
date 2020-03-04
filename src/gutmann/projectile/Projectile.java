@@ -17,7 +17,6 @@ public class Projectile
         this.angle = Math.toRadians(angle);
         this.velocity = velocity;
     }
-
     public double getX()
     {
         return velocity * cos(angle) * time;

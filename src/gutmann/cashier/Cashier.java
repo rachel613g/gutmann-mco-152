@@ -86,10 +86,16 @@ public class Cashier
                 //calculate amount of twenty dollars
                 int deltaTwentyDollars = (int) changeInDouble / 20;
 
-                //check if cashier has enough change
-                if (cashInRegister.getTwentyDollars() < deltaTwentyDollars)
+                //check if cashier has change
+                if (cashInRegister.getTwentyDollars() == 0)
                 {
-                    throwException();
+                    //if no twenties at all continue on
+                    break;
+                }
+                else if (cashInRegister.getTwentyDollars() < deltaTwentyDollars)
+                {
+                    //if not enough, add what register does have
+                    deltaTwentyDollars = cashInRegister.getTwentyDollars();
                 }
                 //add amount to change object
                 change.addTwentyDollars(deltaTwentyDollars);
@@ -102,9 +108,13 @@ public class Cashier
             {
                 int deltaTenDollars = (int) changeInDouble / 10;
                 change.addTenDollars(deltaTenDollars);
-                if (cashInRegister.getTenDollars() < deltaTenDollars)
+                if (cashInRegister.getTwentyDollars() == 0)
                 {
-                    throwException();
+                    break;
+                }
+                else if (cashInRegister.getTenDollars() < deltaTenDollars)
+                {
+                    deltaTenDollars = cashInRegister.getTenDollars();
                 }
                 cashInRegister.subtractTenDollars(deltaTenDollars);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (10 * deltaTenDollars)));
