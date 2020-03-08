@@ -42,7 +42,7 @@ public class Projectile
     {
         //Instantiate decimal format object so x and y values can be rounded to the hundredths place. Long numbers are scary.
         DecimalFormat df = new DecimalFormat("0.00");
-        return  time + ": (" + df.format(getX()) + ", " + df.format(getY()) +")";
+        return  time + ": (" + df.format(getX()) + ", " + df.format(getY()) +")\n";
     }
 }
 
