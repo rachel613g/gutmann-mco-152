@@ -7,14 +7,13 @@ public class ShapesFrame extends JFrame
 {
     private ShapeComponent shapeComponent;
     private JPanel leftPanel;
-   // private JPanel midPanel;
+    private JPanel backgroundPanel;
     private JButton starButton;
-    private JButton diamondRingButton;
+//    private JButton diamondRingButton;
     private JButton balloonButton;
-    private JButton brokenHeartButton;
+    private JButton heartButton;
     private JButton airplaneButton;
-    private final Dimension buttonDimension = new Dimension(150,100);
-
+    private final Dimension buttonDimension = new Dimension(150, 100);
 
 
     //add a left panel and buttons inside it
@@ -22,49 +21,65 @@ public class ShapesFrame extends JFrame
 
     public ShapesFrame()
     {
-        setSize(500,400);
+        setSize(500, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Shapes");
 
-        setLayout(new BorderLayout());
-
-        //midPanel = new JPanel();
-        //add(midPanel, BorderLayout.CENTER);
-        //midPanel.setLayout(new FlowLayout());
         shapeComponent = new ShapeComponent();
+
+        backgroundPanel = new JPanel();
+        backgroundPanel.setLayout(new BorderLayout());
+        setContentPane(backgroundPanel);
+
         //add leftPanel for buttons
         leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        add(leftPanel, BorderLayout.WEST);
+        backgroundPanel.add(leftPanel, BorderLayout.WEST);
 
         //instantiate, set preferred size and add buttons
         starButton = new JButton("Star");
         starButton.setPreferredSize(buttonDimension);
-        diamondRingButton = new JButton("Diamond Ring");
-        diamondRingButton.setPreferredSize(buttonDimension);
+//        diamondRingButton = new JButton("Diamond Ring");
+//        diamondRingButton.setPreferredSize(buttonDimension);
         balloonButton = new JButton("Balloon");
         balloonButton.setPreferredSize(buttonDimension);
-        brokenHeartButton = new JButton("Broken Heart");
-        brokenHeartButton.setPreferredSize(buttonDimension);
+        heartButton = new JButton("Broken Heart");
+        heartButton.setPreferredSize(buttonDimension);
         airplaneButton = new JButton("Airplane");
         airplaneButton.setPreferredSize(buttonDimension);
 
         leftPanel.add(starButton);
-        leftPanel.add(diamondRingButton);
+        // leftPanel.add(diamondRingButton);
         leftPanel.add(balloonButton);
-        leftPanel.add(brokenHeartButton);
+        leftPanel.add(heartButton);
         leftPanel.add(airplaneButton);
 
-        starButton.addActionListener(actionEvent -> addComponent());
+        //add action listeners
+        starButton.addActionListener(actionEvent -> setStarAddStar());
+        heartButton.addActionListener(actionEvent -> setHeartAddHeart());
+        balloonButton.addActionListener(actionEvent -> setBalloonAddBalloon());
     }
 
-    private void addComponent()
+    private void setStarAddStar()
     {
-        add(shapeComponent, BorderLayout.CENTER);
+        shapeComponent.setStarShape();
+        backgroundPanel.add(shapeComponent);
+    }
+
+    public void setHeartAddHeart()
+    {
+        shapeComponent.setHeartShape();
+        backgroundPanel.add(shapeComponent);
+    }
+
+    public void setBalloonAddBalloon()
+    {
+        shapeComponent.setBalloonShape();
+        backgroundPanel.add(shapeComponent);
     }
 
 
-    public static void main(String [] args)
+    public static void main(String[] args)
     {
         new ShapesFrame().setVisible(true);
     }
