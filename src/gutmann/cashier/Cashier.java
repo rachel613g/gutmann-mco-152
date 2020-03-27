@@ -20,7 +20,7 @@ public class Cashier
         this.change = copyThis.getChange();
     }
 
-    private void throwException() throws IllegalArgumentException
+    private void throwCashierException() throws IllegalArgumentException
     {
         throw new IllegalArgumentException("Cashier doesn't have correct change.");
     }
@@ -138,6 +138,11 @@ public class Cashier
                 change.addPennies(deltaPennies);
                 cashInRegister.subtractPennies(deltaPennies);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (deltaPennies * 0.01)));
+            }
+
+            if (changeInDouble > 0)
+            {
+                throwCashierException();
             }
         }
         addCustomerChangeToRegister(cashIN);
