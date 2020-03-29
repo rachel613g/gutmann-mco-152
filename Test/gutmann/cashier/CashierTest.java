@@ -22,11 +22,11 @@ public class CashierTest
 
 
         //then
-        Cash customerAssert = new Cash(1, 0, 0, 2, 0,
+        Cash changeAssert = new Cash(1, 0, 0, 2, 0,
                 0, 0, 0);
         Cash registerAssert = new Cash(99, 0, 0, 98, 3,
                 0, 0, 0);
-        assertEquals(customerAssert, change);
+        assertEquals(changeAssert, change);
         assertEquals(registerAssert, cashier.getCashInRegister());
     }
 
@@ -40,7 +40,7 @@ public class CashierTest
                 0, 0, 0));
 
         //when
-        Cash change = cashier.pay(2.49, customerCash);
+        cashier.pay(2.49, customerCash);
 
         //then it should throw exception
     }
@@ -63,19 +63,46 @@ public class CashierTest
     @Test
     public void payException()
     {
-       //given
+        //given
         Cash customerCash = new Cash(0, 0, 0, 0, 3,
                 0, 0, 0);
         Cashier cashier = new Cashier(new Cash(1, 0, 0, 0, 0,
                 0, 0, 0));
         Cashier assertCashier = new Cashier(cashier);
+      try
+      {
+          //when
+          cashier.pay(2.49, customerCash);
 
-        //when
-        cashier.pay(2.49, customerCash);
-        //exception will be thrown
+          //then
+          // exception will be thrown, but cashier object's change should not be changed.
+      } catch (IllegalArgumentException e)
+      {
+          assertEquals(assertCashier.getCashInRegister(), cashier.getCashInRegister());
+      }
 
-        //then
-        assertEquals(assertCashier.getCashInRegister(), cashier.getCashInRegister());
 
     }
+    //below test needs some serious work
+@Test
+    public void payWithNotOptimalChange()
+    {
+        //given
+        Cash customerCash = new Cash(0, 0, 0, 0, 3,
+                0, 0,2 );
+        Cashier cashier = new Cashier(new Cash(100, 0, 0, 100, 0,
+                0, 2, 0));
+
+        //when
+        Cash change = cashier.pay(20.49, customerCash);
+
+
+        //then
+        Cash customerAssert = new Cash(1, 0, 0, 2, 0,
+                0, 2, 0);
+        Cash registerAssert = new Cash(99, 0, 0, 98, 3, 0, 0, 0);
+        assertEquals(customerAssert, customerCash);
+        assertEquals(registerAssert, cashier.getCashInRegister());
+    }
+
 }
