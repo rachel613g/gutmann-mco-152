@@ -5,7 +5,8 @@ import java.awt.*;
 
 public class ShapeComponent extends JComponent
 {
-    String drawThisShape;
+    String drawThisShape = "star";
+    int y = 0;
 
     @Override
     protected void paintComponent(Graphics g)
@@ -31,6 +32,7 @@ public class ShapeComponent extends JComponent
         {
             drawBalloon(g);
         }
+        repaint();
     }
 
     private void drawHeart(Graphics g)
@@ -61,17 +63,18 @@ public class ShapeComponent extends JComponent
     {
         g.setColor(new Color(0, 100, 100));
 
-        g.fillArc(0, -100, 100, 100, 0, 180);
+        g.fillArc(0, -100 + y, 100, 100, 0, 180);
 
         int[] xArray = new int[]{0, 50, 100};
-        int[] yArray = new int[]{-50, 0, -50};
+        int[] yArray = new int[]{-50 + y, 0 + y, -50 + y};
 
         g.fillPolygon(xArray, yArray, 3);
 
         int[] xArray2 = new int[]{40, 60, 50};
-        int[] yArray2 = new int[]{10, 10, 0};
+        int[] yArray2 = new int[]{10 + y, 10 + y, 0 + y};
 
         g.fillPolygon(xArray2, yArray2, 3);
+        y++;
     }
 
     public void setStarShape()

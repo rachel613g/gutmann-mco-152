@@ -54,13 +54,13 @@ public class Cash
 
     public void subtractNickels(int delta)
     {
-        nickels =- delta;
+        nickels -= delta;
         setTotal();
     }
 
     public void subtractDimes(int delta)
     {
-        dimes =- delta;
+        dimes -= delta;
         setTotal();
     }
 
@@ -72,73 +72,73 @@ public class Cash
 
     public void subtractOneDollars(int delta)
     {
-        oneDollars =- delta;
+        oneDollars -= delta;
         setTotal();
     }
 
     public void subtractFiveDollars(int delta)
     {
-        fiveDollars =- delta;
+        fiveDollars -= delta;
         setTotal();
     }
 
     public void subtractTenDollars(int delta)
     {
-        tenDollars =- delta;
+        tenDollars -= delta;
         setTotal();
     }
 
     public void subtractTwentyDollars(int delta)
     {
-        twentyDollars =- delta;
+        twentyDollars -= delta;
         setTotal();
     }
 
     public void addPennies(int delta)
     {
-        pennies =+ delta;
+        pennies += delta;
         setTotal();
     }
 
     public void addNickels(int delta)
     {
-        nickels =+ delta;
+        nickels += delta;
         setTotal();
     }
 
     public void addDimes(int delta)
     {
-        dimes =+ delta;
+        dimes += delta;
         setTotal();
     }
 
     public void addQuarters(int delta)
     {
-        quarters =+ delta;
+        quarters += delta;
         setTotal();
     }
 
     public void addOneDollars(int delta)
     {
-        oneDollars =+ delta;
+        oneDollars += delta;
         setTotal();
     }
 
     public void addFiveDollars(int delta)
     {
-        fiveDollars =+ delta;
+        fiveDollars += delta;
         setTotal();
     }
 
     public void addTenDollars(int delta)
     {
-        tenDollars =+ delta;
+        tenDollars += delta;
         setTotal();
     }
 
     public void addTwentyDollars(int delta)
     {
-        twentyDollars =+ delta;
+        twentyDollars += delta;
         setTotal();
     }
 

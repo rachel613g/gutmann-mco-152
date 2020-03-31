@@ -8,6 +8,12 @@ import java.awt.event.ActionListener;
 
 public class CashierFrame extends JFrame
 {
+    /*
+    todo
+    make clear button clear JTextArea as well
+    make error show up on the screen
+     */
+
     private JFrame frame;
     private JPanel panel;
     private JPanel topPanel;
@@ -50,6 +56,7 @@ public class CashierFrame extends JFrame
         configTopPanel();
         configureMidPanel();
         configureBottomPanel();
+
 
     }
 
@@ -100,24 +107,6 @@ public class CashierFrame extends JFrame
 
     }
 
-    //this is an anonymous class I toyed with using to solve why my frame only accepted once input.
-    // I didn't finish it.
-//    public class addToCustomerCashObject implements ActionListener
-//    {
-//        int clickTwenty = 0;
-//        public addToCustomerCashObject(ActionEvent actionEvent)
-//        {
-//            actionPerformed(actionEvent);
-//        }
-//
-//        @Override
-//        public void actionPerformed(ActionEvent actionEvent)
-//        {
-//
-//        }
-//    }
-
-
     private void configureMidPanel()
     {
         //midPanel set up
@@ -153,9 +142,19 @@ public class CashierFrame extends JFrame
         //initialize and add components to bottom panel
         registerLabel = new JLabel("Register:");
         changeLabel = new JLabel("Change:");
+        registerTA = new JTextArea();
+        changeTA = new JTextArea();
 
         bottomPanel.add(registerLabel);
+        bottomPanel.add(registerTA);
         bottomPanel.add(changeLabel);
+        bottomPanel.add(changeTA);
+
+
+
+
+
+
     }
 
     //I can't think of a good reason to make this public...
@@ -171,8 +170,8 @@ public class CashierFrame extends JFrame
         String registerAfterTransactionString = Double.toString(registerAfterTransaction);
         double changeD = changeCashObject.getTotal();
         String changeString = Double.toString(changeD);
-//        registerTA.append(registerAfterTransactionString);
-//        changeTA.append(changeString);
+        registerTA.append(registerAfterTransactionString);
+        changeTA.append(changeString);
 
     }
 

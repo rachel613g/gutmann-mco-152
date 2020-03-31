@@ -51,8 +51,7 @@ public class ProjectileFrame extends JFrame
             double velocityD = Double.parseDouble(velocity.getText());
             projectile = new Projectile(angleD, velocityD);
             projectile.increaseTime(i);
-            projectileCoordinates.append(projectile.toString());
-            System.out.println("");
+            projectileCoordinates.append(projectile.toString() + "\n");
         }
     }
 
