@@ -25,8 +25,6 @@ public class ShapesFrame extends JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Shapes");
 
-        shapeComponent = new ShapeComponent();
-
         backgroundPanel = new JPanel();
         backgroundPanel.setLayout(new BorderLayout());
         setContentPane(backgroundPanel);
@@ -35,21 +33,21 @@ public class ShapesFrame extends JFrame
         leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         backgroundPanel.add(leftPanel, BorderLayout.WEST);
+//initialize and instantiate shapeComponent, add shapeComponent
+        shapeComponent = new ShapeComponent();
+        backgroundPanel.add(shapeComponent);
 
         //instantiate, set preferred size and add buttons
         starButton = new JButton("Star");
         starButton.setPreferredSize(buttonDimension);
-//        diamondRingButton = new JButton("Diamond Ring");
-//        diamondRingButton.setPreferredSize(buttonDimension);
         balloonButton = new JButton("Balloon");
         balloonButton.setPreferredSize(buttonDimension);
-        heartButton = new JButton("Broken Heart");
+        heartButton = new JButton("Rotate Heart");
         heartButton.setPreferredSize(buttonDimension);
         airplaneButton = new JButton("Airplane");
         airplaneButton.setPreferredSize(buttonDimension);
 
         leftPanel.add(starButton);
-        // leftPanel.add(diamondRingButton);
         leftPanel.add(balloonButton);
         leftPanel.add(heartButton);
         leftPanel.add(airplaneButton);
@@ -58,25 +56,30 @@ public class ShapesFrame extends JFrame
         starButton.addActionListener(actionEvent -> setStarAddStar());
         heartButton.addActionListener(actionEvent -> setHeartAddHeart());
         balloonButton.addActionListener(actionEvent -> setBalloonAddBalloon());
+        airplaneButton.addActionListener(actionEvent -> setAirplaneAddAirplane());
     }
 
     private void setStarAddStar()
     {
         shapeComponent.setStarShape();
-        backgroundPanel.add(shapeComponent);
     }
 
     public void setHeartAddHeart()
     {
         shapeComponent.setHeartShape();
-        backgroundPanel.add(shapeComponent);
     }
 
     public void setBalloonAddBalloon()
     {
         shapeComponent.setBalloonShape();
-        backgroundPanel.add(shapeComponent);
     }
+
+    public void setAirplaneAddAirplane()
+    {
+        shapeComponent.setAirplaneShape();
+    }
+
+
 
 
     public static void main(String[] args)

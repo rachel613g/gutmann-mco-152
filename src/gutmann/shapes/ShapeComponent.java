@@ -6,7 +6,8 @@ import java.awt.*;
 public class ShapeComponent extends JComponent
 {
     String drawThisShape = "star";
-    int y = 0;
+    int rotate = 0;
+   // int y = 0; //y variable to make balloon fly
 
     @Override
     protected void paintComponent(Graphics g)
@@ -18,7 +19,7 @@ public class ShapeComponent extends JComponent
         int centerX = width / 2;
         int centerY = height / 2;
 
-        // //makes the center the origin
+         //makes the center the origin
         g.translate(centerX, centerY);
         if (drawThisShape.equalsIgnoreCase("star"))
         {
@@ -26,13 +27,23 @@ public class ShapeComponent extends JComponent
         }
         else if (drawThisShape.equalsIgnoreCase("heart"))
         {
+            //add in graphics2d to rotate the heart
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.rotate(Math.toRadians(rotate));
             drawHeart(g);
+            rotate++;
         }
         else if (drawThisShape.equalsIgnoreCase("balloon"))
         {
+            //the y variable to make the balloon fly...
+            //y++;
             drawBalloon(g);
         }
-        repaint();
+        else if (drawThisShape.equalsIgnoreCase("airplane"))
+        {
+            drawAirplane(g);
+        }
+
     }
 
     private void drawHeart(Graphics g)
@@ -63,20 +74,25 @@ public class ShapeComponent extends JComponent
     {
         g.setColor(new Color(0, 100, 100));
 
-        g.fillArc(0, -100 + y, 100, 100, 0, 180);
+        g.fillArc(0, -100 , 100, 100, 0, 180);
 
         int[] xArray = new int[]{0, 50, 100};
-        int[] yArray = new int[]{-50 + y, 0 + y, -50 + y};
+        int[] yArray = new int[]{-50, 0 , -50};
 
         g.fillPolygon(xArray, yArray, 3);
 
         int[] xArray2 = new int[]{40, 60, 50};
-        int[] yArray2 = new int[]{10 + y, 10 + y, 0 + y};
+        int[] yArray2 = new int[]{10, 10, 0 };
 
         g.fillPolygon(xArray2, yArray2, 3);
-        y++;
     }
 
+    public void drawAirplane(Graphics g)
+    {
+        int [] xArray = new int[] {140,40,-40,-80,-100,-160};
+        int [] yArray = new int[] {-120,140,60,120,20,0};
+        g.drawPolygon(xArray,yArray,7);
+    }
     public void setStarShape()
     {
         drawThisShape = "star";
@@ -92,6 +108,12 @@ public class ShapeComponent extends JComponent
     public void setBalloonShape()
     {
         drawThisShape = "balloon";
+        repaint();
+    }
+
+    public void setAirplaneShape()
+    {
+        drawThisShape = "airplane";
         repaint();
     }
 }
