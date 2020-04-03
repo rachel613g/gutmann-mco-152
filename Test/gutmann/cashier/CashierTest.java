@@ -94,14 +94,14 @@ public class CashierTest
                 0, 2, 0));
 
         //when
-        Cash change = cashier.pay(20.49, customerCash);
+        Cash change = cashier.pay(20.50, customerCash);
 
 
         //then
-        Cash customerAssert = new Cash(1, 0, 0, 2, 0,
-                0, 2, 0);
+        Cash customerAssert = new Cash(0, 0, 0, 2, 2,
+                0, 0, 0);
         Cash registerAssert = new Cash(99, 0, 0, 98, 3, 0, 0, 0);
-        assertEquals(customerAssert, customerCash);
+        assertEquals(customerAssert, change);
         assertEquals(registerAssert, cashier.getCashInRegister());
     }
 
