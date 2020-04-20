@@ -7,12 +7,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class ShowCurrentWeather
+public class ShowCurrentWeatherDemo
 {
     //we want to learn how to make a web request
     public static void main(String[] args) throws IOException
     {
-        URL url = new URL("https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22");
+        URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Dublin,IE&appid=b0eff9d1eef0a4c976c42442142c256b");
         URLConnection connection = (HttpURLConnection) url.openConnection();
         InputStream in = connection.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -31,11 +31,12 @@ public class ShowCurrentWeather
 //        }
 
 
-     //   what we are supposed to do
+     //   what is efficient is using the api by populating our local CurrentWeather class using a reader and a gson from the api
+        //demoedbelow
         Gson gson = new Gson();
         CurrentWeather currentWeather = gson.fromJson(reader, CurrentWeather.class);
 
         System.out.println(currentWeather.name);
-
+        System.out.println(currentWeather.main.temp);
     }
 }
