@@ -6,7 +6,6 @@ public class Cashier
 {
     private Cash cashInRegister;
     private Cash change;
-    private Cash cashToBeTakenFromCustomer = new Cash();
     private double changeInDouble;
 
     public Cashier(Cash cashInRegister) throws IllegalArgumentException
@@ -66,8 +65,6 @@ public class Cashier
                 cashInRegister.subtractTwentyDollars(deltaTwentyDollars);
                 //update changeInDouble variable
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (20 * deltaTwentyDollars)));
-                //update cashToSubtract variable
-                cashToBeTakenFromCustomer.addTwentyDollars(cashIN.getTwentyDollars() - deltaTwentyDollars);
             }
             if ((changeInDouble >= 10))
             {
@@ -80,7 +77,6 @@ public class Cashier
                 change.addTenDollars(deltaTenDollars);
                 cashInRegister.subtractTenDollars(deltaTenDollars);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (10 * deltaTenDollars)));
-                cashToBeTakenFromCustomer.addTenDollars(cashIN.getTenDollars() - deltaTenDollars);
             }
             if (changeInDouble >= 5)
             {
@@ -92,7 +88,6 @@ public class Cashier
                 change.addFiveDollars(deltaFiveDollars);
                 cashInRegister.subtractFiveDollars(deltaFiveDollars);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (5 * deltaFiveDollars)));
-                cashToBeTakenFromCustomer.addFiveDollars(cashIN.getFiveDollars() - deltaFiveDollars);
             }
             if (changeInDouble >= 1)
             {
@@ -104,7 +99,6 @@ public class Cashier
                 change.addOneDollars(deltaOneDollars);
                 cashInRegister.subtractOneDollars(deltaOneDollars);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - deltaOneDollars));
-                cashToBeTakenFromCustomer.addOneDollars(cashIN.getOneDollars() - deltaOneDollars);
             }
             if (changeInDouble >= 0.25)
             {
@@ -116,7 +110,6 @@ public class Cashier
                 change.addQuarters(deltaQuarters);
                 cashInRegister.subtractQuarters(deltaQuarters);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (0.25 * deltaQuarters)));
-                cashToBeTakenFromCustomer.addQuarters(cashIN.getQuarters() - deltaQuarters);
             }
             if (changeInDouble >= 0.1)
             {
@@ -128,7 +121,6 @@ public class Cashier
                 change.addDimes(deltaDimes);
                 cashInRegister.subtractDimes(deltaDimes);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (0.1 * deltaDimes)));
-                cashToBeTakenFromCustomer.addDimes(cashIN.getDimes() - deltaDimes);
             }
             if (changeInDouble >= 0.05)
             {
@@ -140,7 +132,6 @@ public class Cashier
                 change.addNickels(deltaNickels);
                 cashInRegister.subtractDimes(deltaNickels);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (0.05 * deltaNickels)));
-                cashToBeTakenFromCustomer.addNickels(cashIN.getNickels() - deltaNickels);
             }
             if (changeInDouble >= 0.01)
             {
@@ -153,7 +144,6 @@ public class Cashier
                 change.addPennies(deltaPennies);
                 cashInRegister.subtractPennies(deltaPennies);
                 changeInDouble = Double.parseDouble(df.format(changeInDouble - (deltaPennies * 0.01)));
-                cashToBeTakenFromCustomer.addPennies(cashIN.getPennies() - deltaPennies);
             }
 
             if (changeInDouble > 0)
@@ -171,73 +161,73 @@ public class Cashier
     {
 
         //add cash to register if necessary
-        if (cashToBeTakenFromCustomer.getPennies() > 0)
+        if (cashIN.getPennies() > 0)
         {
-            cashInRegister.addPennies(cashToBeTakenFromCustomer.getPennies());
+            cashInRegister.addPennies(cashIN.getPennies());
         }
-        if (cashToBeTakenFromCustomer.getNickels() > 0)
+        if (cashIN.getNickels() > 0)
         {
-            cashInRegister.addNickels(cashToBeTakenFromCustomer.getNickels());
+            cashInRegister.addNickels(cashIN.getNickels());
         }
-        if (cashToBeTakenFromCustomer.getDimes() > 0)
+        if (cashIN.getDimes() > 0)
         {
-            cashInRegister.addDimes(cashToBeTakenFromCustomer.getDimes());
+            cashInRegister.addDimes(cashIN.getDimes());
         }
-        if (cashToBeTakenFromCustomer.getQuarters() > 0)
+        if (cashIN.getQuarters() > 0)
         {
-            cashInRegister.addQuarters(cashToBeTakenFromCustomer.getQuarters());
+            cashInRegister.addQuarters(cashIN.getQuarters());
         }
-        if (cashToBeTakenFromCustomer.getOneDollars() > 0)
+        if (cashIN.getOneDollars() > 0)
         {
-            cashInRegister.addOneDollars(cashToBeTakenFromCustomer.getOneDollars());
+            cashInRegister.addOneDollars(cashIN.getOneDollars());
         }
-        if (cashToBeTakenFromCustomer.getFiveDollars() > 0)
+        if (cashIN.getFiveDollars() > 0)
         {
-            cashInRegister.addFiveDollars(cashToBeTakenFromCustomer.getFiveDollars());
+            cashInRegister.addFiveDollars(cashIN.getFiveDollars());
         }
-        if (cashToBeTakenFromCustomer.getTenDollars() > 0)
+        if (cashIN.getTenDollars() > 0)
         {
-            cashInRegister.addTenDollars(cashToBeTakenFromCustomer.getTenDollars());
+            cashInRegister.addTenDollars(cashIN.getTenDollars());
         }
-        if (cashToBeTakenFromCustomer.getTwentyDollars() > 0)
+        if (cashIN.getTwentyDollars() > 0)
         {
-            cashInRegister.addTwentyDollars(cashToBeTakenFromCustomer.getTwentyDollars());
+            cashInRegister.addTwentyDollars(cashIN.getTwentyDollars());
         }
     }
 
     private void takeCashFromCustomer(Cash cashIN)
     {
-        if (cashToBeTakenFromCustomer.getPennies() > 0)
+        if (cashIN.getPennies() > 0)
         {
-            cashIN.subtractPennies(cashToBeTakenFromCustomer.getPennies());
+            cashIN.subtractPennies(cashIN.getPennies());
         }
-        if (cashToBeTakenFromCustomer.getNickels() > 0)
+        if (cashIN.getNickels() > 0)
         {
-            cashIN.subtractNickels(cashToBeTakenFromCustomer.getNickels());
+            cashIN.subtractNickels(cashIN.getNickels());
         }
-        if (cashToBeTakenFromCustomer.getDimes() > 0)
+        if (cashIN.getDimes() > 0)
         {
-            cashIN.subtractDimes(cashToBeTakenFromCustomer.getDimes());
+            cashIN.subtractDimes(cashIN.getDimes());
         }
-       if (cashToBeTakenFromCustomer.getQuarters() > 0)
+       if (cashIN.getQuarters() > 0)
        {
-           cashIN.subtractQuarters(cashToBeTakenFromCustomer.getQuarters());
+           cashIN.subtractQuarters(cashIN.getQuarters());
        }
-       if (cashToBeTakenFromCustomer.getOneDollars() > 0)
+       if (cashIN.getOneDollars() > 0)
        {
-           cashIN.subtractOneDollars(cashToBeTakenFromCustomer.getOneDollars());
+           cashIN.subtractOneDollars(cashIN.getOneDollars());
        }
-        if (cashToBeTakenFromCustomer.getFiveDollars() > 0)
+        if (cashIN.getFiveDollars() > 0)
         {
-            cashIN.subtractFiveDollars(cashToBeTakenFromCustomer.getFiveDollars());
+            cashIN.subtractFiveDollars(cashIN.getFiveDollars());
         }
-        if (cashToBeTakenFromCustomer.getTenDollars() > 0)
+        if (cashIN.getTenDollars() > 0)
         {
-            cashIN.subtractTenDollars(cashToBeTakenFromCustomer.getTenDollars());
+            cashIN.subtractTenDollars(cashIN.getTenDollars());
         }
-        if (cashToBeTakenFromCustomer.getTwentyDollars() > 0)
+        if (cashIN.getTwentyDollars() > 0)
         {
-            cashIN.subtractTwentyDollars(cashToBeTakenFromCustomer.getTwentyDollars());
+            cashIN.subtractTwentyDollars(cashIN.getTwentyDollars());
         }
 
     }

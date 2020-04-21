@@ -88,19 +88,19 @@ public class CashierTest
     public void payWithNotOptimalChange()
     {
         //given
-        Cash customerCash = new Cash(0, 0, 0, 0, 3,
-                0, 0,2 );
-        Cashier cashier = new Cashier(new Cash(100, 0, 0, 100, 0,
-                0, 2, 0));
+        Cash customerCash = new Cash(0, 0, 0, 0, 1,
+                0, 0,1 );
+        Cashier cashier = new Cashier(new Cash(100, 0, 0, 0, 0,
+                0, 0, 0));
 
         //when
         Cash change = cashier.pay(20.50, customerCash);
 
 
         //then
-        Cash customerAssert = new Cash(0, 0, 0, 2, 2,
+        Cash customerAssert = new Cash(50, 0, 0, 0, 0,
                 0, 0, 0);
-        Cash registerAssert = new Cash(99, 0, 0, 98, 3, 0, 0, 0);
+        Cash registerAssert = new Cash(50, 0, 0, 0, 1, 0, 0, 1);
         assertEquals(customerAssert, change);
         assertEquals(registerAssert, cashier.getCashInRegister());
     }
