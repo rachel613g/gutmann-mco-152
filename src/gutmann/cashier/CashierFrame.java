@@ -8,13 +8,6 @@ import java.awt.event.ActionListener;
 
 public class CashierFrame extends JFrame
 {
-    /*
-    todo
-    make clear button clear JTextArea as well
-    make error show up on the screen
-     */
-
-    private JFrame frame;
     private JPanel panel;
     private JPanel topPanel;
     private JPanel midPanel;
@@ -37,6 +30,7 @@ public class CashierFrame extends JFrame
     private JLabel changeLabel;
     private JTextArea registerTA;
     private JTextArea changeTA;
+    private JTextArea errorMessageTA;
 
     private Cash customerCashObject = new Cash();
     private Cash registerCashObject = new Cash(100, 100, 100, 100, 100, 100, 100, 100);
@@ -127,8 +121,16 @@ public class CashierFrame extends JFrame
         midPanel.add(payButton);
 
         //add action listeners
-        clearButton.addActionListener(actionEvent -> priceTF.setText(null));
+        clearButton.addActionListener(actionEvent -> clearButtonActions());
         payButton.addActionListener(actionEvent -> pay());
+    }
+
+    private void clearButtonActions()
+    {
+        priceTF.setText(null);
+        registerTA.setText(null);
+        changeTA.setText(null);
+        errorMessageTA.setText(null);
     }
 
     private void configureBottomPanel()
@@ -144,26 +146,31 @@ public class CashierFrame extends JFrame
         changeLabel = new JLabel("Change:");
         registerTA = new JTextArea();
         changeTA = new JTextArea();
+        errorMessageTA = new JTextArea();
 
         bottomPanel.add(registerLabel);
         bottomPanel.add(registerTA);
         bottomPanel.add(changeLabel);
         bottomPanel.add(changeTA);
-
-
-
-
-
-
+        bottomPanel.add(errorMessageTA);
     }
 
     //I can't think of a good reason to make this public...
     private void pay()
     {
+
         cashierObject = new Cashier(registerCashObject);
         Double priceD = Double.parseDouble(priceTF.getText());
         //call Cashier's pay method
-        changeCashObject = cashierObject.pay(priceD, customerCashObject);
+        //show error message if necessary
+        try
+        {
+            changeCashObject = cashierObject.pay(priceD, customerCashObject);
+        } catch (IllegalArgumentException e)
+        {
+
+            errorMessageTA.setText("ERROR: " + e.getMessage());
+        }
 
         //display results
         double registerAfterTransaction = cashierObject.getCashInRegister().getTotal();
