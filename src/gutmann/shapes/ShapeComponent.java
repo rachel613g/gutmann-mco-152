@@ -96,6 +96,10 @@ public class ShapeComponent extends JComponent
         //airplane base
         g.drawOval(0,0,20,100);
         //airplane wing
+        /*
+        todo
+        make airplane wing rotate
+         */
         g.drawOval(0,50,10,40);
         Graphics2D g2d = (Graphics2D) g;
         g2d.getTransform().setToRotation(Math.toRadians(45));
