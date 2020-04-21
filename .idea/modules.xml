@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Scratch/Scratch.iml" filepath="$PROJECT_DIR$/../Scratch/Scratch.iml" />
       <module fileurl="file://$PROJECT_DIR$/gutmann-mcon-152.iml" filepath="$PROJECT_DIR$/gutmann-mcon-152.iml" />
     </modules>
   </component>
