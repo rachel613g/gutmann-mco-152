@@ -89,9 +89,16 @@ public class ShapeComponent extends JComponent
 
     public void drawAirplane(Graphics g)
     {
-        int [] xArray = new int[] {140,40,-40,-80,-100,-160};
-        int [] yArray = new int[] {-120,140,60,120,20,0};
-        g.drawPolygon(xArray,yArray,7);
+//        int [] xArray = new int[] {140,40,-40,-80,-100,-160};
+//        int [] yArray = new int[] {-120,140,60,120,20,0};
+//        g.drawPolygon(xArray,yArray,7);
+
+        //airplane base
+        g.drawOval(0,0,20,100);
+        //airplane wing
+        g.drawOval(0,50,10,40);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.getTransform().setToRotation(Math.toRadians(45));
     }
     public void setStarShape()
     {
